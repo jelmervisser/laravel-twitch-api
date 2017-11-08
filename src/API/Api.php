@@ -56,8 +56,8 @@ class Api
 
         // GuzzleHttp Client with default parameters.
         $this->client = new Client([
-            'base_uri' => 'https://api.twitch.tv/kraken/',
-            'headers'  => array('Accept' => 'application/vnd.twitchtv.v5+json')
+            'base_uri' => 'https://api.twitch.tv/helix/',
+            'headers'  => array('Accept' => 'application/json')
         ]);
     }
 
@@ -157,7 +157,7 @@ class Api
         $data = [
           'headers' => [
             'Client-ID' => $this->getClientId(),
-            'Accept' => 'application/vnd.twitchtv.v5+json',
+            'Accept' => 'application/json',
           ],
         ];
 
@@ -182,11 +182,11 @@ class Api
                 return $exception;
             } else {
                 //503
-                return array(
+                return json_encode(array(
                     'error' => 'Service Unavailable',
                     'status' => 503,
                     'message' => $e->getMessage()
-                );
+                ));
             }
         }
         
