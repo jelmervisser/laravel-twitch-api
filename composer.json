@@ -6,6 +6,10 @@
     {
       "name": "Petter Kraabøl",
       "email": "petter.zarlach@gmail.com"
+    },
+    {
+      "name": "Jelmer Visser",
+      "email": "viss1401@student.nhl.nl"
     }
   ],
   "autoload": {
