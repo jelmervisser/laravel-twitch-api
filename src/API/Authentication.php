@@ -62,6 +62,6 @@ class Authentication extends Api
             'redirect_uri' => config('twitch-api.redirect_url'),
         ];
 
-        return $this->sendRequest('POST', 'oauth2/token', false, $options, $availableOptions);
+        return $this->sendRequest('POST', 'oauth2/token', false, $options, $availableOptions, 'https://api.twitch.tv/kraken/');
     }
 }

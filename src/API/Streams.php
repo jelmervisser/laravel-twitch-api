@@ -16,7 +16,7 @@ class Streams extends Api
      */
     public function streamsChannel($channel)
     {
-        return $this->sendRequest('GET', 'streams/'.$channel);
+        return $this->sendRequest('GET', 'streams');
     }
 
     /**
@@ -26,11 +26,11 @@ class Streams extends Api
      *
      * @return JSON List of streams
      */
-    public function streams($options)
+    public function streams($options, $token)
     {
         $availableOptions = ['game', 'channel', 'limit', 'offset', 'client_id'];
 
-        return $this->sendRequest('GET', 'streams', false, $options, $availableOptions);
+        return $this->sendRequest('GET', 'streams', $token, $options, $availableOptions);
     }
 
     /**

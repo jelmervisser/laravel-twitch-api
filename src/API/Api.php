@@ -41,7 +41,6 @@ class Api
      */
     public function __construct($token = null, $clientId = null)
     {
-
         // Set token if given
         if ($token) {
             $this->setToken($token);
@@ -140,7 +139,7 @@ class Api
      *
      * @return JSON JSON object from Twitch
      */
-    public function sendRequest($type = 'GET', $path = '', $token = false, $options = [], $availableOptions = [])
+    public function sendRequest($type = 'GET', $path = '', $token = false, $options = [], $availableOptions = [], $baseUrl = '')
     {
 
 /**
@@ -149,26 +148,36 @@ class Api
  * This variable can either be removed completed or used for something
  * more useful, like telling developers what options they have.
  */
+		if(!empty($baseUrl)){
+			$this->client = new Client([
+				'base_uri' => $baseUrl,
+				'headers'  => array('Accept' => 'application/json')
+			]);
+		} else {
+			$this->client = new Client([
+				'base_uri' => 'https://api.twitch.tv/helix/',
+				'headers'  => array('Accept' => 'application/json')
+			]);
+		}
+
         // URL parameters
         //$path = $this->generateUrl($path, $token, $options, $availableOptions);
         $path = $this->generateUrl($path, $token, $options, $availableOptions);
 
         // Headers
-        $data = [
-          'headers' => [
+        $headers = [
             'Client-ID' => $this->getClientId(),
             'Accept' => 'application/json',
-          ],
         ];
 
         // Twitch token
         if ($token) {
-            $data['headers']['Authorization'] = 'OAuth '.$this->getToken($token);
+	        $headers['Authorization'] = 'Bearer '.$this->getToken($token);
         }
 
         try{
             // Request object
-            $request = new Request($type, $path, $data);
+            $request = new Request($type, $path, $headers);
             // Send request
             $response = $this->client->send($request);
 

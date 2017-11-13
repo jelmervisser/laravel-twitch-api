@@ -45,7 +45,15 @@ class TwitchApiService extends Api
         return $authentication->getAccessObject($code, $state);
     }
 
-    /**
+    public function setToken( $token ) {
+
+    	$authentication = new Authentication();
+		$authentication->setToken($token);
+
+		return $authentication;
+    }
+
+	/**
      * Blocks.
      */
     public function ignoreList($user, $token = null)
@@ -242,11 +250,11 @@ class TwitchApiService extends Api
         return $streams->streamsChannel($channel);
     }
 
-    public function streams($options)
+    public function streams($options, $token)
     {
         $streams = new Streams();
 
-        return $streams->streams($options);
+        return $streams->streams($options, $token);
     }
 
     public function featuredStreams($options = [])

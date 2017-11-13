@@ -5,7 +5,7 @@ An easy-to-use RESTful API for Laravel 5
 ## Installation
 
 ```bash
-composer require zarlach/laravel-twitch-api
+composer require jelmervisser/laravel-twitch-api
 ```
 
 In `config/app.php`, add this provider in `providers`
