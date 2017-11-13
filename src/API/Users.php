@@ -42,7 +42,7 @@ class Users extends Api
      */
     public function authenticatedUser($token = null)
     {
-        return $this->sendRequest('GET', 'user', $this->getToken($token));
+        return $this->sendRequest('GET', 'users', $this->getToken($token));
     }
 
     /**

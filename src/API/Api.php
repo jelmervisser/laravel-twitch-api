@@ -166,13 +166,12 @@ class Api
 
         // Headers
         $headers = [
-            'Client-ID' => $this->getClientId(),
             'Accept' => 'application/json',
         ];
 
         // Twitch token
         if ($token) {
-	        $headers['Authorization'] = 'Bearer '.$this->getToken($token);
+	        $headers['Authorization'] = 'Bearer ' . $this->getToken($token);
         }
 
         try{
